@@ -72,12 +72,11 @@ def extend_hit_direction(query, seq, hit, window_size, direction):
         seq_extension = seq[:pos_seq:]
         seq_extension = seq_extension[::-1]
     else:
-        raise ValueError("Direction value invalid.")
+        raise ValueError("Direction must be +1 (forward) or -1 (backward).")
 
     match_size = 0
     equal_char = 0
     waiting_match = 0
-
 
     while query_extension and seq_extension:
 
@@ -97,8 +96,13 @@ def extend_hit_direction(query, seq, hit, window_size, direction):
         seq_extension = seq_extension[1::]
         
         if (match_size + waiting_match) // 2 > equal_char:
-            return (pos_query, pos_seq, match_size, equal_char)
-    return (pos_query, pos_seq, match_size, equal_char)
+            break
+        
+    if direction == 1:
+        return (pos_query, pos_seq, match_size, equal_char)
+        
+    else:
+        return (pos_query - match_size, pos_seq - match_size, match_size, equal_char)
     
 
 query = "AATATAT"
