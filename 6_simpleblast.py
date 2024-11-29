@@ -38,7 +38,7 @@ def hits(qm, seq):
                 res.append((P1, P2))
     return res
 
-def extend_hit_direction(query, seq, hit, window_size, direction):
+def extend_hit_direction(query, seq, hit, window_size, direction = 1):
     """
         query: first string
         seq: second string
@@ -105,11 +105,17 @@ def extend_hit_direction(query, seq, hit, window_size, direction):
         return (pos_query - match_size, pos_seq - match_size, match_size, equal_char)
     
 
-query = "AATATAT"
-seq = "AATATGTTATATAATAATATTT"
 
-qm = query_map(query, 3)
 
-# print(qm)
-# print(hits(qm, seq))
-print(extend_hit_direction(query,seq,(4,17),3,-1))
+
+
+
+if __name__ == "__main__":
+    query = "AATATAT"
+    seq = "AATATGTTATATAATAATATTT"
+
+    qm = query_map(query, 3)
+    # print(qm)
+    # print(hits(qm, seq))
+    print(extend_hit_direction(query,seq,(1,16),3))
+    print(extend_hit_direction(query,seq,(1,16),3, -1))
