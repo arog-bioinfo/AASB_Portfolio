@@ -4,6 +4,7 @@
 ## Descrição
 Este repositório contém implementações em Python de algoritmos de bioinformática, incluindo:
 
+
 - Sequências
 - Alinhamentos locais e globais
 - Blast
@@ -20,6 +21,7 @@ Para cada algoritmo apresentamos:
 - Projeto de baixo nível
 - Implementação
 - Testes de Unidade 
+
 
 
 ## Pré-requisitos

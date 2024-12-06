@@ -38,7 +38,7 @@ def hits(qm, seq):
                 res.append((P1, P2))
     return res
 
-def extend_hit_direction(query, seq, hit, window_size, direction):
+def extend_hit_direction(query, seq, hit, window_size):
     """
         query: first string
         seq: second string
@@ -60,56 +60,64 @@ def extend_hit_direction(query, seq, hit, window_size, direction):
     """
     pos_query, pos_seq = hit
 
-    if direction == 1:
-        query_extension = query[pos_query + window_size ::]
-        seq_extension = seq[pos_seq+ window_size ::]
+    def extend_hit(direction):
 
-    elif direction == -1:
+        if direction == 1:
+            query_extension = query[pos_query + window_size ::]
+            seq_extension = seq[pos_seq+ window_size ::]
 
-        query_extension = query[:pos_query:]
-        query_extension = query_extension[::-1]
+        elif direction == -1:
 
-        seq_extension = seq[:pos_seq:]
-        seq_extension = seq_extension[::-1]
-    else:
-        raise ValueError("Direction must be +1 (forward) or -1 (backward).")
+            query_extension = query[:pos_query:]
+            query_extension = query_extension[::-1]
 
-    match_size = 0
-    equal_char = 0
-    waiting_match = 0
+            seq_extension = seq[:pos_seq:]
+            seq_extension = seq_extension[::-1]
 
-    while query_extension and seq_extension:
+        match_size = 0
+        equal_char = 0
+        waiting_match = 0
 
-        if query_extension[0]==seq_extension[0]:
-            match_size += 1 + waiting_match
-            equal_char +=1
-            waiting_match = 0
+        while query_extension and seq_extension:
+
+            if query_extension[0]==seq_extension[0]:
+                match_size += 1 + waiting_match
+                equal_char +=1
+                waiting_match = 0
+                
+            else:
+                waiting_match += 1
+
+            if DEBUG:
+                print(f"Possible extension(query/seq): {query_extension} {seq_extension}\n" 
+                        f"Match size: {match_size} | Equal Bases: {equal_char} | Waiting match: {waiting_match} \n")
+                
+            query_extension = query_extension[1::]
+            seq_extension = seq_extension[1::]
+            
+            if (match_size + waiting_match) // 2 > equal_char:
+                break
+            
+        if direction == 1:
+            return [match_size, equal_char]
             
         else:
-            waiting_match += 1
-
-        if DEBUG:
-            print(f"Possible extension(query/seq): {query_extension} {seq_extension}\n" 
-                  f"Match size: {match_size} | Equal Bases: {equal_char} | Waiting match: {waiting_match} \n")
-            
-        query_extension = query_extension[1::]
-        seq_extension = seq_extension[1::]
-        
-        if (match_size + waiting_match) // 2 > equal_char:
-            break
-        
-    if direction == 1:
-        return (pos_query, pos_seq, match_size, equal_char)
-        
-    else:
-        return (pos_query - match_size, pos_seq - match_size, match_size, equal_char)
+            return [pos_query - match_size, pos_seq - match_size, match_size, equal_char]
     
+    res = extend_hit(-1)
+    res[-2] += window_size + extend_hit(1)[-2]
+    res[-1] += window_size + extend_hit(1)[-1]
+    return res
 
-query = "AATATAT"
-seq = "AATATGTTATATAATAATATTT"
+    def best_hit(query, seq, window_size):
+        pass
 
-qm = query_map(query, 3)
 
-# print(qm)
-# print(hits(qm, seq))
-print(extend_hit_direction(query,seq,(4,17),3,-1))
+if __name__ == "__main__":
+    query = "AATATAT"
+    seq = "AATATGTTATATAATAATATTT"
+
+    qm = query_map(query, 3)
+    # print(qm)
+    # print(hits(qm, seq))
+    print(extend_hit_direction(query,seq,(0,0),3))
