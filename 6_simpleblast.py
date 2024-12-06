@@ -109,10 +109,8 @@ def extend_hit_direction(query, seq, hit, window_size):
     res[-1] += window_size + extend_hit(1)[-1]
     return res
 
-
-
-
-
+    def best_hit(query, seq, window_size):
+        pass
 
 
 if __name__ == "__main__":
