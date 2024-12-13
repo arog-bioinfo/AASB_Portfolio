@@ -1,5 +1,13 @@
 # AASB Portfolio
  
+ **Team Members:**
+
+* Artur Gomes       | PG55692
+* Catarina Gomes    | PG55694
+* Maria Carvalho    | PG55130
+* Pedro Pereira     | PG55703
+* Sami Benkhellat   | PG55704
+
 
 ## Descrição
 Este repositório contém implementações em Python de algoritmos de bioinformática, incluindo:
