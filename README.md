@@ -21,7 +21,7 @@ Este repositório contém implementações em Python de algoritmos de bioinform�
 
 Esses algoritmos são projetados para análise de sequências biológicas.
 
-Para cada algoritmo apresentamos:
+Para cada algoritmo apresentamos em script de jupyter:
 
 - Descrição do algoritmo
 - Projeto de alto nível
