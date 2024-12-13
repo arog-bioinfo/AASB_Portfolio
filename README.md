@@ -17,8 +17,7 @@ Este repositório contém implementações em Python de algoritmos de bioinform�
 - Alinhamentos locais e globais
 - Blast
 - Motifs determinísticos e estocásticos
-- Alinhamentos multiplos
-- Árvores filogenéticass
+- Árvores filogenéticas
 
 Esses algoritmos são projetados para análise de sequências biológicas.
 
