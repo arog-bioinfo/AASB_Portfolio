@@ -13,11 +13,11 @@
 Este repositório contém implementações em Python de algoritmos de bioinformática, incluindo:
 
 
-- Sequências - Catarina
-- Alinhamentos locais e globais - Sami
-- Blast - Artur
-- Motifs determinísticos e estocásticos - Pedro
-- Árvores filogenéticas - Maria
+- Sequências
+- Alinhamentos locais e globais
+- Blast
+- Motifs determinísticos e estocásticos
+- Árvores filogenéticas
 
 Esses algoritmos são projetados para análise de sequências biológicas.
 
