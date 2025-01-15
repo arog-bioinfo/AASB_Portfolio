@@ -10,7 +10,7 @@
 
 
 ## Descrição
-Este repositório contém implementações em Python de algoritmos de bioinformática, incluindo:
+Este repositório contém implementações em Python de algoritmos de bioinformática:
 
 
 - Sequências
@@ -28,9 +28,4 @@ Para cada algoritmo apresentamos em script de jupyter:
 - Projeto de baixo nível
 - Implementação
 - Testes de Unidade 
-
-
-
-## Pré-requisitos
-Para executar os algoritmos, é necessário ter o Python 3.6 ou superior instalado. Não são necessárias bibliotecas adicionais, pois todos os algoritmos foram implementados em Python.
 
